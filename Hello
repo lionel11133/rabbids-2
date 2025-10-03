@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Student Information Form</title>
+  <style>
+    body {
+      background-color: pink;
+      font-family: Arial, sans-serif;
+    }
+    #form-container {
+      background-color: lightblue;
+      padding: 20px;
+      width: 400px;
+      margin: 20px auto;
+      border-radius: 8px;
+    }
+    label {
+      display: block;
+      font-weight: bold;
+      margin-top: 10px;
+    }
+    input[type="text"] {
+      width: 100%;
+      padding: 6px;
+      margin-top: 4px;
+      box-sizing: border-box;
+    }
+    #submit-btn {
+      margin-top: 15px;
+      padding: 8px 12px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+    table {
+      margin: 20px auto;
+      border-collapse: collapse;
+      width: 80%;
+      background-color: white;
+    }
+    th, td {
+      border: 1px solid #888;
+      padding: 8px 12px;
+      text-align: center;
+    }
+    th {
+      background-color: #ccc;
+    }
+  </style>
+</head>
+<body>
+
+  <div id="form-container">
+    <form id="studentForm">
+      <label for="idNumber">Enter ID</label>
+      <input type="text" id="idNumber" name="idNumber" required>
+
+      <label for="lastName">Enter Last Name</label>
+      <input type="text" id="lastName" name="lastName" required>
+
+      <label for="firstName">Enter First Name</label>
+      <input type="text" id="firstName" name="firstName" required>
+
+      <label for="middleName">Enter Middle Name</label>
+      <input type="text" id="middleName" name="middleName">
+
+      <label for="course">Enter Course</label>
+      <input type="text" id="course" name="course" required>
+
+      <label for="section">Enter Section</label>
+      <input type="text" id="section" name="section" required>
+
+      <button type="submit" id="submit-btn">Submit</button>
+    </form>
+  </div>
+
+  <table id="studentTable">
+    <thead>
+      <tr>
+        <th>ID Number</th>
+        <th>Last Name</th>
+        <th>First Name</th>
+        <th>Middle Name</th>
+        <th>Course</th>
+        <th>Section</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>12456</td>
+        <td>De Guzman</td>
+        <td>Richard</td>
+        <td>De Leon</td>
+        <td>BSIT</td>
+        <td>IT201</td>
+      </tr>
+      <tr>
+        <td>56799</td>
+        <td>Miano</td>
+        <td>Mark Anthony</td>
+        <td>Castro</td>
+        <td>BSBA</td>
+        <td>BA106</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <script>
+    // Get references to the form and table body
+    const form = document.getElementById('studentForm');
+    const tableBody = document.querySelector('#studentTable tbody');
+
+    // Listen for the form submission
+    form.addEventListener('submit', function(event) {
+      event.preventDefault(); // Prevent the default form submit behavior
+
+      // Get form values
+      const id = document.getElementById('idNumber').value.trim();
+      const lastName = document.getElementById('lastName').value.trim();
+      const firstName = document.getElementById('firstName').value.trim();
+      const middleName = document.getElementById('middleName').value.trim();
+      const course = document.getElementById('course').value.trim();
+      const section = document.getElementById('section').value.trim();
+
+      // Create a new row
+      const newRow = document.createElement('tr');
+
+      newRow.innerHTML = `
+        <td>${id}</td>
+        <td>${lastName}</td>
+        <td>${firstName}</td>
+        <td>${middleName}</td>
+        <td>${course}</td>
+        <td>${section}</td>
+      `;
+
+      // Append the new row to the table body
+      tableBody.appendChild(newRow);
+
+      // Reset the form fields
+      form.reset();
+    });
+  </script>
+
+</body>
+</html>
